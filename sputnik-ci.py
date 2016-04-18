@@ -73,6 +73,8 @@ def init_travis_variables(ci_variables):
 
 
 def get_circleci_pr_number(repo_slug):
+    logging.info("CIRCLE_PR_NUMBER" + get_env("CIRCLE_PR_NUMBER"))
+    logging.info("CI_PULL_REQUESTS" + get_env("CI_PULL_REQUESTS"))
     pr_from_fork = get_env("CIRCLE_PR_NUMBER")
     pr_number = None
     if pr_from_fork is None:
