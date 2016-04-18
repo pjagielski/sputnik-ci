@@ -73,13 +73,12 @@ def init_travis_variables(ci_variables):
 
 
 def get_circleci_pr_number(repo_slug):
-    logging.info(get_env("CIRCLE_PR_NUMBER"))
-    logging.info(get_env("CI_PULL_REQUESTS"))
     pr_from_fork = get_env("CIRCLE_PR_NUMBER")
     pr_number = None
     if pr_from_fork is None:
         pull_requests_str = get_env("CI_PULL_REQUESTS")
         if pull_requests_str is not None:
+            logging.info(get_env("CI_PULL_REQUESTS"))
             pull_request_url_prefix = "https://github.com/" + repo_slug + "/pull/"
             pull_requests = list(map(lambda pr: int(pr[len(pull_request_url_prefix):]), pull_requests_str.split(",")))
             pr_number = max(pull_requests)
